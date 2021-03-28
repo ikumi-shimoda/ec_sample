@@ -17,9 +17,7 @@ class CreateInfosTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('contents');
-            $table->dateTime('info_time');
-            $table->timestamps();
-            $table->softDeletes();
+            $table->timestamp('created_at');
         });
     }
 
