@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class SpringSale extends Model
 {
     protected $fillable = [
-        'id',
         'name',
         'price',
+        'category'.
+        'purchase',
         'description',
         'image',
     ];

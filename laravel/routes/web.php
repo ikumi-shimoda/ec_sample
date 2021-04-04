@@ -16,7 +16,12 @@ Route::get('/', function () {
 });
 
 Route::get('/', 'MainController@index')->name('home');
-Route::get('sale', 'ProductController@sale')->name('product.sale');
-Route::get('search', 'SearchController@index')->name('search.index');
-// Route::get('/admin', 'Auth\LoginController')->name('admin.index');
+Route::get('product/{id}', 'MainController@productShow')->name('product.show');
+Route::get('info/{id}', 'MainController@infoShow')->name('info.show');
+Route::get('search', 'MainController@search')->name('main.search');
+Route::get('/admin', 'AdminController@index')->name('admin.index');
+Route::post('/admin', 'AdminController@store')->name('admin.store');
 
+Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');

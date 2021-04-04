@@ -6,15 +6,15 @@
       <div class="swiper-wrapper">
         <div class="swiper-slide">
           <img class="top_img" src="{{ asset('/img/main1.jpg') }}" alt="トップ画像">
-          <a href="{{ route('product.sale') }}"><p class="sale_link">See More</p></a>
+          <a href="#"><p class="sale_link">See More</p></a>
         </div>
         <div class="swiper-slide">
           <img class="top_img" src="{{ asset('/img/main2.jpg') }}" alt="トップ画像">
-          <a href="{{ route('product.sale') }}"><div class="sale_link">See More</div></a>
+          <a href="#"><div class="sale_link">See More</div></a>
         </div>
         <div class="swiper-slide">
           <img class="top_img" src="{{ asset('/img/main3.jpg') }}" alt="トップ画像">
-          <a href="{{ route('product.sale') }}"><div class="sale_link">See More</div></a>
+          <a href="#"><div class="sale_link">See More</div></a>
         </div>
         ...
       </div>
@@ -23,13 +23,18 @@
       <div class="swiper-button-next"></div>
       </div>
     <div class="inner">
+    <!-- <div id="app">
+      <example-component></example-component>
+    </div> -->
       <article class="main_contents">
         <h1 class="heading"><i>New Arrivals</i></h1>
         <ul class="items">
-          @foreach ($products as $product)
+          @foreach ($reverseProducts as $product)
             @if($loop->index <= 7)
               <li>
-                <a href="#"><img class="products_img" src="{{ asset('/img/' . $product->image) }}" alt="商品画像"></a>
+                <a href="{{ route('product.show', $product->id) }}">
+                <img class="products_img" src="{{ asset('/img/' . $product->image) }}" alt="商品画像">
+                </a>
                 <p>{{$product->name}}</p>
                 <small>¥ {{ $product->price }}</small>
               </li>
@@ -64,7 +69,7 @@
           <ul>
             @foreach ($infos as $info)
               @if($loop->index <= 4)
-                <li><span>{{ $info->created_at->format('Y/m/d') }}</span><a class="link" href="#">{{ $info->title }}</a></li>
+                <li><span>{{ $info->created_at->format('Y/m/d') }}</span><a class="link" href="{{ route('info.show', $info->id) }}">{{ $info->title }}</a></li>
               @endif
             @endforeach
           </ul>
