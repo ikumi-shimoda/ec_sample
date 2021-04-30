@@ -6,7 +6,7 @@ services:
       - "6603:3306"
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=true
-      - MYSQL_DATABASE=gizlog
+      - MYSQL_DATABASE=ec_sample
       - LANG=C.UTF-8
     volumes:
       - db:/var/lib/mysql
@@ -14,7 +14,7 @@ services:
 
   web:
     image: arbiedev/php-nginx:7.3
-    working_dir: /var/www/dev_gizlog
+    working_dir: /var/www/laravel
     ports:
       - "8080:80"
     volumes:
