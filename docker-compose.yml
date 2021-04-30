@@ -1,0 +1,25 @@
+version: '2'
+services:
+  db:
+    image: mysql@sha256:45ad5952e4f304d39aedb02caf7e0afc30a310e66f7ab60af8acf20fd4a0f54c
+    ports:
+      - "6603:3306"
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_DATABASE=gizlog
+      - LANG=C.UTF-8
+    volumes:
+      - db:/var/lib/mysql
+    command: mysqld --sql-mode=NO_ENGINE_SUBSTITUTION --character-set-server=utf8 --collation-server=utf8_unicode_ci
+
+  web:
+    image: arbiedev/php-nginx:7.3
+    working_dir: /var/www/dev_gizlog
+    ports:
+      - "8080:80"
+    volumes:
+      - ./www:/var/www
+      - ./nginx.conf:/etc/nginx/sites-enabled/default
+
+volumes:
+  db:
